@@ -1,0 +1,5 @@
+= form_for [@todo_list,TodoItem.new] do |f|
+  %p
+    = f.label :content
+    = f.text_field :content
+  %p= f.submit

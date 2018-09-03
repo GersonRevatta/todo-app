@@ -1,3 +1,6 @@
 = @todo_list.title
 = link_to 'edit', edit_todo_list_path(@todo_list)
 = link_to 'delete', todo_list_path(@todo_list), method: :delete
+%p content:
+= render @todo_list.todo_items
+= render 'todo_items/form'
