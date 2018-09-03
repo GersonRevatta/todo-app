@@ -1,6 +1,6 @@
 class TodoItemsController < ApplicationController
   before_action :set_todo_list
-  before_action :set_todo_item, only: :destroy
+  before_action :set_todo_item, except: [:create]
   def create
     @todo_item = @todo_list.todo_items.new(todo_item_params)
     if @todo_item.save
@@ -12,6 +12,12 @@ class TodoItemsController < ApplicationController
     @todo_item = @todo_list.todo_items.find(params[:id])
     @todo_item.destroy
     redirect_to @todo_list, notice: 'Successfully content destroyed'
+  end
+
+  def complete
+    @todo_item.completed_at=  Time.now
+    @todo_item.save
+    redirect_to @todo_list, notice: "Todo item completed"
   end
 
   private
